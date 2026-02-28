@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const services = [
   {
     title: "Water Tank & Sump",
@@ -28,6 +29,8 @@ const services = [
 ];
 
 const Services: React.FC = () => {
+
+
   return (
     <section id="services" className="py-24 bg-surface">
       <div className="container mx-auto px-6">
@@ -74,7 +77,7 @@ const Services: React.FC = () => {
                 
                 <div className="mt-16">
                   <a 
-                    href={service.link} 
+                    href="/services" 
                     className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-primary group-hover:text-accent transition-all"
                   >
                     View Details

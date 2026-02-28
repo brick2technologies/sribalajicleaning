@@ -1,36 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
+import LeadModal from "../pages/LeadModal";
 
 const FinalCTA: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <section className="relative py-24 bg-[#0a0a0a] overflow-hidden">
       {/* Background Decorative Element */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-accent skew-x-[-20deg] translate-x-1/2 pointer-events-none" />
-      
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-accent font-bold tracking-[0.3em] text-xs uppercase mb-6">
             Ready for a cleaner space?
           </h2>
-          
+
           <h3 className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-[1.1] mb-10">
-            Expert Hygiene for Hyderabad’s <br /> 
+            Expert Hygiene for Hyderabad’s <br />
             <span className="text-accent italic">Finest Homes & Offices.</span>
           </h3>
 
           <p className="text-white/60 text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
-            Join 1,000+ satisfied clients in Jubilee Hills, Gachibowli, and Hitech City. 
+            Join 1,000+ satisfied clients in Jubilee Hills, Gachibowli, and Hitech City.
             Book your professional deep clean or mechanized water tank service today.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             {/* Primary Action */}
-            <button className="w-full sm:w-auto bg-accent text-white px-10 py-5 rounded-2xl font-black text-sm tracking-widest uppercase hover:bg-white hover:text-primary transition-all duration-300 animate-soft-pulse">
+            <button onClick={() => setIsModalOpen(true)} className="w-full sm:w-auto bg-accent text-white px-10 py-5 rounded-2xl font-black text-sm tracking-widest uppercase hover:bg-white hover:text-primary transition-all duration-300 animate-soft-pulse">
               Book Your Service Now
             </button>
 
             {/* Secondary Action (WhatsApp) */}
-            <a 
-              href="https://wa.me/91XXXXXXXXXX" 
+            <a
+
+              href="https://wa.me/918074844043"
               className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white/5 border border-white/10 text-white px-10 py-5 rounded-2xl font-black text-sm tracking-widest uppercase hover:bg-white/10 transition-all"
             >
               <svg className="w-5 h-5" fill="#22CB16" viewBox="0 0 24 24">
@@ -48,6 +51,7 @@ const FinalCTA: React.FC = () => {
           </div> */}
         </div>
       </div>
+      <LeadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 };

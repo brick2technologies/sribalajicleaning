@@ -1,115 +1,179 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import LeadModal from '../pages/LeadModal';
+
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = ['Water Tank', 'Villas', 'Commercial', 'About'];
+  const navItems = [
+    {name: 'Home', path: '/'},
+    { name: 'Services', path: '/services' },
+    { name: 'About', path: '/about' },
+    { name: 'Contact', path: '/contact' },
+  ];
 
   return (
-    <div className={`fixed top-0 w-full z-50 transition-all duration-500 px-4 md:px-10 ${isScrolled ? 'pt-4' : 'pt-6'}`}>
-
-      <header
-        className={`max-w-7xl mx-auto transition-all duration-500 rounded-[22px] md:rounded-full font-sans overflow-hidden
-        ${isScrolled || isMobileMenuOpen
-            ? 'bg-white/90 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.06)] border border-white/20 py-2.5'
-            : 'bg-transparent py-2'}`}
+    <>
+      <nav
+        className={`fixed top-0 w-full z-50 transition-all duration-700 
+        ${isScrolled
+            ? 'bg-white/90 backdrop-blur-xl border-b border-slate-100 py-4 shadow-sm'
+            : 'bg-transparent py-6 md:py-8'}`}
       >
-        <div className="px-4 md:px-8 flex justify-between items-center relative">
+        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+          <div className="flex justify-between items-center">
 
-          {/* MOBILE: LEFT MENU / DESKTOP: LEFT LOGO */}
-          <div className="flex-1 md:flex-none">
-            {/* Hamburger (Mobile Only) */}
-            <button
-              className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-primary/5 text-primary active:scale-90 transition-transform"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              <div className="w-5 h-3.5 relative flex flex-col justify-between">
-                <span className={`w-full h-0.5 bg-primary rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
-                <span className={`w-3/4 h-0.5 bg-primary rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
-                <span className={`w-full h-0.5 bg-primary rounded-full transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
+            {/* 1. BRAND IDENTITY */}
+            <div className="flex items-center gap-12">
+              <Link to="/" className="block group">
+                <img
+                  src="/logo.webp"
+                  alt="Sri Balaji Deep Cleaning Services"
+                  className={`transition-all duration-500 object-contain 
+                  ${isScrolled ? 'h-10 md:h-12' : 'h-10 md:h-14'}`}
+                />
+              </Link>
+
+              {/* Status Dot */}
+              <div className={`hidden lg:flex items-center gap-3 border-l border-slate-200 pl-8 transition-opacity duration-500 ${isScrolled ? 'opacity-0' : 'opacity-100'}`}>
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                </span>
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/40">
+                  Operating in Hyderabad
+                </span>
               </div>
-            </button>
-
-            {/* Desktop Logo (Hidden on Mobile) */}
-            <div className="hidden md:block">
-              {/* Update 'src' with the actual path to your logo image file (e.g., logo.svg, logo.png) */}
-              <img
-                src="/logo.webp"
-                alt="Sri Balaji Deep Cleaning Services Logo"
-                className="h-10 w-auto object-contain" // Set height to 40px, let width adjust automatically
-              />
-            </div>
-          </div>
-
-          {/* MOBILE: CENTER LOGO / DESKTOP: CENTER NAV */}
-          <div className="flex-none md:flex-1 flex justify-center">
-            {/* Mobile Logo (Absolute Center on small screens) */}
-            <div className="md:hidden">
-              <img
-                src="/logo.webp"
-                alt="Sri Balaji Deep Cleaning Services Logo"
-                className="h-10 w-auto object-contain" // Set height to 40px, let width adjust automatically
-              />
             </div>
 
-            {/* Desktop Nav (Hidden on Mobile) */}
-            <nav className="hidden md:flex items-center gap-8 text-[15px] font-bold text-primary/60">
+            {/* 2. CENTER NAVIGATION */}
+            <div className="hidden lg:flex items-center bg-slate-50/50 rounded-2xl px-2 py-1 border border-slate-100">
               {navItems.map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase().replace(' ', '-')}`}
-                  className="hover:text-accent transition-all duration-300 relative group"
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className={`px-8 py-3 text-[11px] font-black uppercase tracking-[0.2em] rounded-xl transition-all duration-300 
+                  ${location.pathname === item.path
+                      ? 'bg-accent text-primary shadow-sm'
+                      : 'text-primary/60 hover:text-primary hover:bg-slate-100'}`}
                 >
-                  {item}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
-                </a>
+                  {item.name}
+                </Link>
               ))}
-            </nav>
+            </div>
+
+            {/* 3. CONVERSION HUB & MOBILE TOGGLE */}
+            <div className="flex items-center gap-4 md:gap-8">
+              <div className={`hidden xl:flex flex-col items-end transition-all ${isScrolled ? 'translate-x-0 opacity-100' : 'opacity-100'}`}>
+                <span className="text-[9px] font-black text-accent uppercase tracking-widest mb-1">
+                  Schedule an Inspection
+                </span>
+                <a href="tel:+918074844043" className="text-sm font-bold text-primary">
+                  +91 80748 44043
+                </a>
+              </div>
+
+              {/* Desktop Button */}
+              <button 
+                onClick={() => setIsModalOpen(true)} 
+                className="hidden sm:block group relative overflow-hidden bg-primary text-white px-6 md:px-10 py-3 md:py-4 rounded-xl md:rounded-2xl text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] transition-all hover:bg-accent hover:text-primary active:scale-95 shadow-lg shadow-primary/10"
+              >
+                <span className="relative z-10">Book Now</span>
+                <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+              </button>
+
+              <button
+                onClick={() => setIsMobileMenuOpen(true)}
+                className="lg:hidden p-3 rounded-xl bg-primary text-white active:scale-90 transition-transform"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 8h16M4 16h16" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* MOBILE DRAWER OVERLAY */}
+      <div
+        className={`fixed inset-0 z-[100] bg-primary/20 backdrop-blur-sm transition-opacity duration-500 lg:hidden
+        ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        onClick={() => setIsMobileMenuOpen(false)}
+      />
+
+      {/* MOBILE DRAWER CONTENT */}
+      <div
+        className={`fixed top-0 right-0 h-full w-[85%] max-w-sm z-[101] bg-white shadow-2xl transition-transform duration-500 ease-out lg:hidden
+        ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+      >
+        <div className="flex flex-col h-full p-8">
+          <div className="flex justify-between items-center mb-12">
+            <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
+              <img src="/logo.webp" alt="Logo" className="h-8" />
+            </Link>
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2 text-primary/40 hover:text-primary transition-colors"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
 
-          {/* RIGHT ACTION: Always Right */}
-          <div className="flex-1 md:flex-none flex justify-end items-center gap-4">
-            <a href="tel:+918074844043" className="hidden lg:flex items-center gap-2 text-xs font-black text-primary/80 hover:text-accent transition-colors">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
-              +91 80748 44043
-            </a>
+          <nav className="flex flex-col gap-6">
+            {navItems.map((item, i) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`text-3xl font-black tracking-tighter transition-colors 
+                ${location.pathname === item.path ? 'text-accent' : 'text-primary hover:text-accent'}`}
+                style={{ transitionDelay: `${i * 50}ms` }}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </nav>
 
-            <button className="bg-primary text-white px-5 md:px-8 py-2.5 md:py-3.5 rounded-full text-[10px] md:text-[11px] font-black uppercase tracking-widest hover:bg-accent transition-all shadow-lg active:scale-95">
-              <span className="md:inline hidden">BOOK SERVICE</span>
-              <span className="md:hidden inline">BOOK</span>
+          <div className="mt-auto space-y-4">
+            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-100">
+              <p className="text-[10px] font-black text-accent uppercase tracking-normal mb-2">Immediate Booking</p>
+              <a href="tel:+918074844043" className="text-sm font-black text-primary leading-none">
+                +91 80748 44043
+              </a>
+            </div>
+
+            <button 
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsModalOpen(true);
+              }} 
+              className="w-full py-5 bg-primary text-white rounded-2xl font-black uppercase text-xs tracking-[0.2em] shadow-xl shadow-primary/20 active:scale-95"
+            >
+              Book Now
             </button>
           </div>
         </div>
+      </div>
 
-        {/* Mobile Menu Content */}
-        <div className={`md:hidden transition-all duration-500 ease-in-out overflow-hidden ${isMobileMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'}`}>
-          <div className="px-8 pt-4 pb-8 flex flex-col gap-6 border-t border-primary/5 mt-4">
-            {navItems.map((item, i) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace(' ', '-')}`}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-lg font-bold text-primary transition-all duration-300 transform ${isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
-                style={{ transitionDelay: `${i * 100}ms` }}
-              >
-                {item}
-              </a>
-            ))}
-            <a href="tel:+918074844043" className="flex items-center gap-3 text-accent font-black pt-2">
-              <span className="w-8 h-8 flex items-center justify-center bg-accent/10 rounded-full text-[10px]">📞</span>
-              +91 80748 44043
-            </a>
-          </div>
-        </div>
-      </header>
-    </div>
+      {/* MODAL MOVED OUTSIDE NAV FOR BETTER PORTAL-LIKE BEHAVIOR */}
+      <LeadModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
+    </>
   );
 };
 

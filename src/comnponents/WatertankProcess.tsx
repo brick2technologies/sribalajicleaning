@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import LeadModal from '../pages/LeadModal';
 
 const steps = [
   {
@@ -34,6 +35,8 @@ const steps = [
 ];
 
 const WaterTankProcess: React.FC = () => {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <section className="py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
@@ -100,7 +103,7 @@ const WaterTankProcess: React.FC = () => {
               </p>
             </div>
             
-            <button className="group relative bg-accent text-primary px-10 py-2 sm:py-6 rounded-2xl font-black text-[12px] sm:text-sm  tracking-widest hover:bg-white transition-all shadow-xl hover:-translate-y-1">
+            <button onClick={() => setIsModalOpen(true)} className="group relative bg-accent text-primary px-10 py-2 sm:py-6 rounded-2xl font-black text-[12px] sm:text-sm  tracking-widest hover:bg-white transition-all shadow-xl hover:-translate-y-1">
               Book Free Inspection
               <span className="ml-3 inline-block transition-transform group-hover:translate-x-1">→</span>
             </button>
@@ -108,6 +111,10 @@ const WaterTankProcess: React.FC = () => {
         </div>
 
       </div>
+      <LeadModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </section>
   );
 };

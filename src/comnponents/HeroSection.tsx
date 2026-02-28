@@ -1,12 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import LeadModal from "../pages/LeadModal";
 
 const Hero: React.FC = () => {
   const wordsRef = useRef<(HTMLSpanElement | null)[]>([]);
   const leftImgRef = useRef<HTMLDivElement>(null);
   const rightImgRef = useRef<HTMLDivElement>(null);
   const mobileImgRef = useRef<HTMLDivElement>(null);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const categories = [
     "Water Tank & Sump",
     "Houses & Villas",
@@ -139,8 +140,8 @@ const Hero: React.FC = () => {
         {/* Part 4: CTA & Stats */}
         <div className="flex-none flex flex-col items-center justify-start gap-8 md:gap-12 pt-4">
           <div className="flex flex-col sm:flex-row gap-3 md:gap-6 w-full sm:w-auto justify-center">
-            <button className="bg-accent text-white px-10 py-4 rounded-xl font-bold shadow-lg active:scale-95 transition-transform">GET A FREE QUOTE</button>
-            <button className="border-2 border-slate-100 bg-white px-10 py-4 rounded-xl font-bold text-primary">+91 80748 44043</button>
+            <button onClick={() => setIsModalOpen(true)} className="bg-accent text-white px-10 py-4 rounded-xl font-bold shadow-lg active:scale-95 transition-transform">GET A FREE QUOTE</button>
+            <a href="tel:+918074844043" className="border-2 border-slate-100 bg-white px-10 py-4 rounded-xl font-bold text-primary">+91 80748 44043</a>
           </div>
 
           <div className="flex items-center gap-10 md:gap-16 pb-6">
@@ -167,7 +168,10 @@ const Hero: React.FC = () => {
         <img src="/Men2.webp" alt="Professional" className="w-full h-full object-contain object-bottom" />
         {/* <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-60"></div> */}
       </div>
-
+      <LeadModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </section>
   );
 };
