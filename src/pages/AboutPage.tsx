@@ -22,7 +22,7 @@ const AboutPage: React.FC = () => {
           <div className="lg:col-span-5 order-2 lg:order-1">
             <div className="relative aspect-[4/5] rounded-[2.5rem] md:rounded-[3rem] overflow-hidden bg-slate-100 shadow-xl md:shadow-2xl">
               {/* Founder Image */}
-              <img src='/founder.png' className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"/>
+              <img src='/founder.png' className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent" />
               <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 text-white">
                 <p className="font-black text-xl md:text-2xl tracking-tighter">D. Shivaji Naik</p>
                 <p className="text-[10px] md:text-xs uppercase tracking-widest opacity-80">OWNER</p>
@@ -64,22 +64,34 @@ const AboutPage: React.FC = () => {
             {[
               {
                 name: "High-Pressure Jet",
-                desc: "150-bar German technology to peel off stubborn biofilm and calcification.",
-                tag: "Jetting",
-                image: "/jet-pump.webp" // Replace with actual image path
+                desc: "150-bar industrial jetting system designed to remove stubborn dirt, biofilm, grease, and calcification effectively.",
+                tag: "Jet Cleaning",
+                image: "/machine3.webp"
               },
               {
-                name: "Sludge Pump",
-                desc: "Industrial dewatering pumps handling 200L of mud and silt per minute.",
-                tag: "Extraction",
-                image: "/sludge-pump.webp"
+                name: "Rotary Broom",
+                desc: "Heavy-duty rotary sweeping machine ideal for removing dust, debris, and loose particles from large surfaces.",
+                tag: "Surface Sweeping",
+                image: "/machine1.jpg"
               },
               {
-                name: "UV-C Sterilizer",
-                desc: "Medical-grade UV radiation for 99.9% elimination of water-borne bacteria.",
-                tag: "Sterilize",
-                image: "/uv-sterilizer.webp"
-              }
+                name: "Floor Cleaning Machine",
+                desc: "Advanced floor cleaning system with water spray and suction for deep cleaning and quick drying.",
+                tag: "Floor Care",
+                image: "/machine2.jpg"
+              },
+              {
+                name: "Vacuum Machine",
+                desc: "High-power industrial vacuum designed to extract dust, sludge, and wastewater efficiently.",
+                tag: "Dust Extraction",
+                image: "/machine3.jpg"
+              },
+              {
+                name: "Scrubbing Machine",
+                desc: "Professional scrubbing equipment for deep stain removal and polished surface finishing.",
+                tag: "Deep Scrubbing",
+                image: "/machine5.webp"
+              },
             ].map((machine, i) => (
               <div key={i} className="group relative bg-white rounded-[2rem] p-3 md:p-5 border border-slate-100 hover:border-accent transition-all duration-500 overflow-hidden shadow-sm hover:shadow-2xl">
 
@@ -87,7 +99,7 @@ const AboutPage: React.FC = () => {
                 <div className="flex flex-row md:flex-col gap-4 md:gap-6 items-center md:items-start">
 
                   {/* Image/Icon Container */}
-                  <div className="w-24 h-24 md:w-full aspect-square bg-slate-50 rounded-2xl md:rounded-[1.5rem] overflow-hidden relative flex-shrink-0">
+                  <div className="w-24 h-24 md:w-full md:h-48 bg-slate-50 rounded-2xl md:rounded-[1.5rem] overflow-hidden relative flex-shrink-0">
                     {/* Visual Background Decoration */}
                     <div className="absolute inset-0 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity">
                       <svg className="w-full h-full" viewBox="0 0 100 100" fill="currentColor">
@@ -102,7 +114,7 @@ const AboutPage: React.FC = () => {
                     <img
                       src={machine.image}
                       alt={machine.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 mix-blend-multiply grayscale hover:grayscale-0"
+                      className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700 mix-blend-multiply grayscale hover:grayscale-0"
                     />
 
                     {/* Category Tag (Desktop Only) */}
@@ -123,9 +135,7 @@ const AboutPage: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </div>
-                    <p className="text-slate-400 text-[11px] md:text-sm leading-relaxed md:leading-6">
-                      {machine.desc}
-                    </p>
+
                   </div>
                 </div>
               </div>
@@ -183,7 +193,7 @@ const AboutPage: React.FC = () => {
         </div>
 
       </div>
-      <LeadModal  isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <LeadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </main>
   );
 };
