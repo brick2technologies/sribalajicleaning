@@ -2,8 +2,8 @@ import { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 // Global Components
-import Navbar from "./comnponents/Navbar";
-import Footer from "./comnponents/Footer";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 // Pages
 import HomePage from "./pages/HomePage"; // Standard import for the main entry

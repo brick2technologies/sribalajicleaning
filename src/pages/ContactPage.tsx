@@ -1,5 +1,5 @@
 import React from 'react';
-import SEO from '../comnponents/SEO'; // Importing the SEO engine
+import SEO from '../components/SEO'; // Importing the SEO engine
 
 const ContactPage: React.FC = () => {
   const localities = [

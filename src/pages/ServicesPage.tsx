@@ -1,5 +1,6 @@
 import React, { useState, useMemo, lazy, Suspense } from 'react';
-import SEO from '../comnponents/SEO';
+import * as Icons from '../components/Icons';
+import SEO from '../components/SEO';
 
 // Performance: LeadModal is likely heavy; lazy load it to improve initial page load speed
 const LeadModal = lazy(() => import('../pages/LeadModal'));
@@ -9,36 +10,35 @@ const LeadModal = lazy(() => import('../pages/LeadModal'));
 const SERVICE_CATEGORIES = [
   {
     category: "Residential Excellence",
-    description: "Premium care for your living spaces, from independent villas in Jubilee Hills to high-rise apartments in Gachibowli.",
+    description: "Premium care for your living spaces...",
     services: [
-      { id: "tank-cleaning", title: "Water Tank & Sump", desc: "6-step mechanized sanitization process ensuring 100% bacteria-free water.", icon: "💧", ariaLabel: "Mechanized water tank and sump cleaning Hyderabad" },
-      { id: "villa-cleaning", title: "Villa Deep Cleaning", desc: "Comprehensive detailing for luxury homes and independent villas.", icon: "🏡", ariaLabel: "Luxury villa deep cleaning services Hyderabad" },
-      { id: "apartment-cleaning", title: "Apartment Cleaning", desc: "Move-in/Move-out and periodic deep cleans for gated communities.", icon: "🏢", ariaLabel: "Flat and apartment deep cleaning services" },
-      { id: "upholstery-cleaning", title: "Sofa & Upholstery", desc: "Stain removal and fabric revitalization using eco-friendly chemicals.", icon: "🛋️", ariaLabel: "Sofa and carpet shampooing services" }
+      { id: "tank-cleaning", title: "Water Tank & Sump", desc: "6-step mechanized sanitization process...", icon: <Icons.WaterTankIcon />, ariaLabel: "Mechanized water tank cleaning" },
+      { id: "villa-cleaning", title: "Villa Deep Cleaning", desc: "Comprehensive detailing for luxury homes...", icon: <Icons.VillaIcon />, ariaLabel: "Villa deep cleaning Hyderabad" },
+      { id: "apartment-cleaning", title: "Apartment Cleaning", desc: "Move-in/Move-out cleans...", icon: <Icons.ApartmentIcon />, ariaLabel: "Apartment cleaning Hyderabad" },
+      { id: "upholstery-cleaning", title: "Sofa & Upholstery", desc: "Stain removal using eco-friendly chemicals.", icon: <Icons.UpholsteryIcon />, ariaLabel: "Sofa shampooing services" }
     ]
   },
   {
     category: "Commercial & Industrial",
-    description: "Professional hygiene standards for high-traffic business environments in Hitech City and Madhapur.",
+    description: "Professional hygiene standards...",
     services: [
-      { id: "office-cleaning", title: "Office Sanitization", desc: "Dust-free workstations and sterile cabins for healthy workplaces.", icon: "💻", ariaLabel: "Corporate office deep cleaning Hyderabad" },
-      { id: "floor-polishing", title: "Commercial Floor", desc: "Industrial scrubbing and Italian marble polishing.", icon: "✨", ariaLabel: "Industrial floor scrubbing and polishing" },
-      { id: "retail-cleaning", title: "Retail & Shops", desc: "Showroom-grade cleaning for luxury retail outlets.", icon: "🛍️", ariaLabel: "Retail store and showroom cleaning" },
-      { id: "carpet-cleaning", title: "Commercial Carpet", desc: "Deep extraction for heavy-duty carpets in office spaces.", icon: "🧵", ariaLabel: "Industrial carpet cleaning services" }
+      { id: "office-cleaning", title: "Office Sanitization", desc: "Dust-free workstations...", icon: <Icons.OfficeIcon />, ariaLabel: "Office deep cleaning" },
+      { id: "floor-polishing", title: "Commercial Floor", desc: "Industrial scrubbing...", icon: <Icons.FloorIcon />, ariaLabel: "Floor polishing services" },
+      { id: "retail-cleaning", title: "Retail & Shops", desc: "Showroom-grade cleaning...", icon: <Icons.RetailIcon />, ariaLabel: "Retail cleaning services" },
+      { id: "carpet-cleaning", title: "Commercial Carpet", desc: "Deep extraction for heavy-duty carpets.", icon: <Icons.CarpetIcon />, ariaLabel: "Commercial carpet cleaning" }
     ]
   },
   {
     category: "Specialized Institutions",
-    description: "Industry-specific cleaning meeting FSSAI and educational health codes.",
+    description: "Industry-specific cleaning meeting FSSAI...",
     services: [
-      { id: "restaurant-cleaning", title: "Restaurant & Kitchen", desc: "FSSAI-grade degreasing and sanitization.", icon: "🍳", ariaLabel: "Kitchen degreasing and FSSAI cleaning" },
-      { id: "hotel-cleaning", title: "Hotels & Hospitality", desc: "Room detailing and lobby maintenance.", icon: "🏨", ariaLabel: "Hotel and hospitality deep cleaning" },
-      { id: "school-cleaning", title: "Schools & Colleges", desc: "Safe, non-toxic cleaning for student areas.", icon: "🎓", ariaLabel: "Educational institute cleaning" },
-      { id: "chemical-cleaning", title: "Chemical Cleaning", desc: "Heavy-duty treatment for stubborn grime.", icon: "🧪", ariaLabel: "Industrial chemical cleaning services" }
+      { id: "restaurant-cleaning", title: "Restaurant & Kitchen", desc: "FSSAI-grade degreasing...", icon: <Icons.RestaurantIcon />, ariaLabel: "Kitchen sanitization" },
+      { id: "hotel-cleaning", title: "Hotels & Hospitality", desc: "Room detailing and lobby maintenance.", icon: <Icons.HospitalityIcon />, ariaLabel: "Hotel cleaning services" },
+      { id: "school-cleaning", title: "Schools & Colleges", desc: "Safe, non-toxic cleaning.", icon: <Icons.SchoolIcon />, ariaLabel: "Educational institute cleaning" },
+      { id: "chemical-cleaning", title: "Chemical Cleaning", desc: "Heavy-duty treatment for stubborn grime.", icon: <Icons.ChemicalIcon />, ariaLabel: "Industrial chemical cleaning" }
     ]
   }
 ];
-
 const ServicesPage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -140,6 +140,84 @@ const ServicesPage: React.FC = () => {
               </section>
             ))}
           </div>
+
+          <section className="mb-24 mt-20 md:mb-48" aria-labelledby="machinery-heading">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 gap-6">
+              <div className="max-w-2xl">
+                <h2 className="text-[10px] md:text-xs font-black text-accent uppercase tracking-widest mb-3 md:mb-4">
+                  Our Arsenal
+                </h2>
+                <h3 id="machinery-heading" className="text-3xl md:text-6xl font-black text-primary tracking-tighter">
+                  Precision Machinery.
+                </h3>
+              </div>
+              <div className="hidden md:block text-slate-400 text-sm max-w-xs uppercase font-bold tracking-widest leading-loose border-l border-slate-200 pl-6">
+                German Engineering • 6-Step Sanitization • Industrial Strength
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+              {[
+                {
+                  name: "High-Pressure Jet",
+                  desc: "150-bar industrial jetting system designed to remove stubborn dirt, biofilm, grease, and calcification.",
+                  tag: "Jet Cleaning",
+                  image: "/machine3.webp"
+                },
+                {
+                  name: "Rotary Broom",
+                  desc: "Heavy-duty rotary sweeping machine ideal for removing dust, debris, and loose particles from large surfaces.",
+                  tag: "Surface Sweeping",
+                  image: "/machine1.jpg"
+                },
+                {
+                  name: "Floor Cleaning Machine",
+                  desc: "Advanced floor cleaning system with water spray and suction for deep cleaning and quick drying.",
+                  tag: "Floor Care",
+                  image: "/machine2.jpg"
+                },
+                {
+                  name: "Vacuum Machine",
+                  desc: "High-power industrial vacuum designed to extract dust, sludge, and wastewater efficiently.",
+                  tag: "Dust Extraction",
+                  image: "/machine3.jpg"
+                },
+                {
+                  name: "Scrubbing Machine",
+                  desc: "Professional scrubbing equipment for deep stain removal and polished surface finishing.",
+                  tag: "Deep Scrubbing",
+                  image: "/machine5.webp"
+                },
+              ].map((machine, i) => (
+                <article key={i} className="group relative bg-white rounded-[2rem] p-3 md:p-5 border border-slate-100 hover:border-accent transition-all duration-500 overflow-hidden shadow-sm hover:shadow-2xl">
+                  <div className="flex flex-row md:flex-col gap-4 md:gap-6 items-center md:items-start">
+                    <div className="w-24 h-24 md:w-full md:h-48 bg-slate-50 rounded-2xl md:rounded-[1.5rem] overflow-hidden relative flex-shrink-0">
+                      <img
+                        src={machine.image}
+                        alt={`${machine.name} industrial cleaning equipment`}
+                        loading="lazy"
+                        className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700 mix-blend-multiply grayscale hover:grayscale-0"
+                      />
+                      <div className="hidden md:block absolute top-4 left-4">
+                        <span className="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest text-accent">
+                          {machine.tag}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex-1 md:px-2 pb-2">
+                      <div className="flex justify-between items-center mb-1 md:mb-3">
+                        <h4 className="font-black text-sm md:text-2xl text-primary uppercase tracking-tight group-hover:text-accent transition-colors">
+                          {machine.name}
+                        </h4>
+                        <span className="sr-only">View {machine.name} details</span>
+                      </div>
+                      <p className="text-slate-400 text-xs leading-relaxed hidden md:block">{machine.desc}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
 
           {/* Footer CTA */}
           <section className="mt-24 md:mt-32 p-8 md:p-20 rounded-[2.5rem] md:rounded-[3rem] bg-primary relative overflow-hidden text-center">

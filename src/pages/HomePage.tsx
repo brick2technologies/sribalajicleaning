@@ -1,14 +1,14 @@
 import React, { Suspense, lazy } from 'react';
-import SEO from '../comnponents/SEO';
+import SEO from '../components/SEO';
 
 // Lazy load sections for better performance
-const Hero = lazy(() => import("../comnponents/HeroSection"));
-const Services = lazy(() => import("../comnponents/Services"));
-const WaterTankProcess = lazy(() => import("../comnponents/WatertankProcess"));
-const BeforeAfter = lazy(() => import("../comnponents/BeforeAfter"));
-const InfinityFlow = lazy(() => import("../comnponents/Locations"));
-const AutoTestimonials = lazy(() => import("../comnponents/Testimonials"));
-const FinalCTA = lazy(() => import("../comnponents/FinalCTA"));
+const Hero = lazy(() => import("../components/HeroSection"));
+const Services = lazy(() => import("../components/Services"));
+const WaterTankProcess = lazy(() => import("../components/WatertankProcess"));
+const BeforeAfter = lazy(() => import("../components/BeforeAfter"));
+const InfinityFlow = lazy(() => import("../components/Locations"));
+const AutoTestimonials = lazy(() => import("../components/Testimonials"));
+const FinalCTA = lazy(() => import("../components/FinalCTA"));
 
 const HomePage: React.FC = () => {
   return (

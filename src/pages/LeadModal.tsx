@@ -63,7 +63,7 @@ const LeadModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
           {/* Compact Header */}
           <div className="flex justify-between items-start mb-6">
             <div>
-              <h3 className="text-xl font-black text-primary tracking-tighter">Instant Quote</h3>
+              <h3 className="text-xl font-black text-primary tracking-tighter">Quick Enquiry</h3>
               <div className="flex items-center gap-1.5 mt-1">
                 <span className="flex h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
                 <p className="text-slate-400 text-[9px] font-black uppercase tracking-widest">Available in Hyderabad</p>
@@ -108,6 +108,7 @@ const LeadModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                   <option>Villa Cleaning</option>
                   <option>Kitchen Degreasing</option>
                   <option>Sofa/Carpet Cleaning</option>
+                  <option>Other Services</option>
                 </select>
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-300">
                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7" /></svg>
