@@ -126,7 +126,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="flex gap-6 md:gap-10">
-            {['Instagram', 'LinkedIn', 'Facebook'].map((social) => (
+            {['Instagram', 'Facebook'].map((social) => (
               <a
                 key={social}
                 href="#"
